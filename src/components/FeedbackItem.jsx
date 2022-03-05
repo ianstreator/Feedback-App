@@ -16,10 +16,10 @@ function FeedbackItem({ item }) {
           deleteFeedback(item.id);
         }}
       >
-        <FaTimes color="crimson"></FaTimes>
+        <FaTimes color="grey"></FaTimes>
       </button>
       <button className="edit" onClick={() => editFeedback(item)}>
-        <FaEdit color="orange" />
+        <FaEdit color="grey"/>
       </button>
       <div className="text-display">{item.text}</div>
     </Card>

@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import FeedbackContext from "../Context/FeedbackContext";
 
 function RatingSelect({ select }) {
-  const [selected, setSelected] = useState(3);
+  const [selected, setSelected] = useState(null);
   const { feedbackEdit } = useContext(FeedbackContext);
 
   useEffect(() => {

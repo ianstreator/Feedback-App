@@ -4,11 +4,10 @@ import { Link } from "react-router-dom";
 function AboutPage() {
   return (
     <Card>
-      Welcome to our about page!
+      <h2>Welcome to our about page!</h2>
       <br />
-      <Link to="/">Navigate to HomePage</Link>
+      <Link to="/" className="Link">Navigate to HomePage</Link>
     </Card>
-    // <div>Welcome to our about page!</div>
   );
 }
 
