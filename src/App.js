@@ -6,6 +6,7 @@ import FeedbackForm from "./components/FeedbackForm.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import AboutIconLink from "./components/AboutIconLink";
 import { FeedbackProvider } from "./Context/FeedbackContext";
+import Notify from "./components/notify";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                 path="/"
                 element={
                   <>
+                    <Notify />
                     <FeedbackForm />
                     <FeedbackStats />
                     <FeedbackList />

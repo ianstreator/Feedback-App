@@ -1,9 +1,11 @@
 import { useState, useContext, useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 
 import Card from "./shared/Card";
 import Button from "./shared/button";
 import RatingSelect from "./RatingSelect";
 import FeedbackContext from "../Context/FeedbackContext";
+
 
 function FeedbackForm() {
   const [text, setText] = useState("");
@@ -49,6 +51,7 @@ function FeedbackForm() {
       }
       setText("");
       setBtnDisabled(true);
+      toast("Thank you for sharing your feedback!")
     }
   };
 

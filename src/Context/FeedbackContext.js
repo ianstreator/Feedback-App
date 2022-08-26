@@ -1,15 +1,20 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
-  const [feedback, setFeedback] = useState([
-    {
-      id: 1,
-      text: "this item is from context",
-      rating: 4,
-    },
-  ]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [feedback, setFeedback] = useState([]);
+  useEffect(() => {
+    console.log("hello world");
+    fetchFeedback();
+  }, []);
+  const fetchFeedback = async () => {
+    const res = await fetch("http://localhost:5000/feedback");
+    const data = await res.json();
+    setFeedback(data);
+    setIsLoading(false);
+  };
 
   const [feedbackEdit, setFeedbackEdit] = useState({
     item: {},
@@ -54,6 +59,7 @@ export const FeedbackProvider = ({ children }) => {
         addFeedback,
         editFeedback,
         updateFeedback,
+        isLoading,
       }}
     >
       {children}
