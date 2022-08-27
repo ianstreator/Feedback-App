@@ -13,7 +13,9 @@ export const FeedbackProvider = ({ children }) => {
     const res = await fetch("http://localhost:5000/feedback");
     const data = await res.json();
     setFeedback(data);
-    setIsLoading(false);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
   };
 
   const [feedbackEdit, setFeedbackEdit] = useState({

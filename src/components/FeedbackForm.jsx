@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 
 import Card from "./shared/Card";
-import Button from "./shared/button";
+import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";
 import FeedbackContext from "../Context/FeedbackContext";
 

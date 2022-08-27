@@ -2,7 +2,7 @@ import FeedbackContext from "../Context/FeedbackContext";
 import { useContext } from "react";
 
 function FeedbackStats() {
-  const { feedback } = useContext(FeedbackContext);
+  const { feedback, isLoading } = useContext(FeedbackContext);
 
   let avg =
     Math.round(
@@ -16,7 +16,7 @@ function FeedbackStats() {
   return (
     <div className="feedback-stats">
       <h4>{feedback.length} Reviews</h4>
-      <h4>Avg. rating: {isNaN(avg) ? 0 : avg}</h4>
+      <h4>Avg. rating: {isNaN(avg) || isLoading ? 0 : avg}</h4>
     </div>
   );
 }
