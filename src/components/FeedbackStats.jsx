@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 function FeedbackStats() {
   const { feedback, isLoading } = useContext(FeedbackContext);
-
+  if (!feedback.length) return <></>;
   let avg =
     Math.round(
       (feedback.reduce((acc, cur) => {
@@ -20,7 +20,5 @@ function FeedbackStats() {
     </div>
   );
 }
-
-
 
 export default FeedbackStats;

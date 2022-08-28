@@ -22,8 +22,6 @@ function FeedbackForm() {
   }, [feedbackEdit]);
 
   const handleTextChange = (e) => {
-    if (text.trim().length < 10) setBtnDisabled(true);
-
     if (text === "") {
       setBtnDisabled(true);
       setMessage(null);
@@ -40,9 +38,11 @@ function FeedbackForm() {
     e.preventDefault();
     if (!btnDisabled) {
       const newFeedback = {
-        text,
+        id: feedbackEdit.item.id,
         rating,
+        text,
       };
+      console.log(newFeedback);
       if (feedbackEdit.edit) {
         updateFeedback(feedbackEdit.item.id, newFeedback);
         feedbackEdit.edit = false;

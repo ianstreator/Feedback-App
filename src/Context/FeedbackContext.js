@@ -11,23 +11,20 @@ export const FeedbackProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    // fetchFeedback();
-    CRUD({});
+    feedbackCRUD({});
   }, []);
 
-  const CRUD = async ({ method = "get", body = false, id = false }) => {
-    let options =
-      method !== "get"
-        ? {
-            method: `${method}`.toUpperCase(),
-            headers: { "Content-Type": "application/json" },
-          }
-        : null;
-    if (body) options["body"] = JSON.stringify(body);
+  const feedbackCRUD = async ({ method = "GET", body = false, id = false }) => {
+    let options = {
+      method: method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    };
+    if (method === "GET" || "DELETE") options = null;
     const backendUrl = id ? `/feedback/${id}` : "/feedback";
     const res = await fetch(backendUrl, options);
     const data = await res.json();
-    if (options === null) {
+    if (method === "GET") {
       setFeedback(data);
       setTimeout(() => {
         setIsLoading(false);
@@ -44,17 +41,32 @@ export const FeedbackProvider = ({ children }) => {
   };
 
   const updateFeedback = async (id, updateItem) => {
-    const updatedItem = await CRUD({ method: "patch", body: updateItem, id });
+    const updatedItem = await feedbackCRUD({
+      method: "PUT",
+      body: updateItem,
+      id,
+    });
+    // const data = await fetch(`http://localhost:5000/feedback/${id}`, {
+    //   method: "PUT",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(updateItem),
+    // });
     setFeedback(
-      feedback.map((item) =>
-        item.id === id ? { ...item, ...updatedItem } : item
-      )
+      feedback.map((item) => {
+        if (item.id === id) {
+          return { ...item, ...updatedItem };
+        } else {
+          return item;
+        }
+      })
     );
   };
 
   const deleteFeedback = async (id) => {
     if (window.confirm("are you sure you want to delete this feedback?")) {
-      await CRUD({ method: "delete", id });
+      await feedbackCRUD({ method: "DELETE", id });
       setFeedback(feedback.filter((item) => item.id !== id));
     }
   };
@@ -66,7 +78,7 @@ export const FeedbackProvider = ({ children }) => {
     } else {
       newFeedback.id = 1;
     }
-    await CRUD({ method: "post", body: newFeedback });
+    await feedbackCRUD({ method: "POST", body: newFeedback });
     setFeedback([newFeedback, ...feedback]);
   };
 
