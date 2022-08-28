@@ -6,22 +6,22 @@ import FeedbackContext from "../Context/FeedbackContext";
 
 function FeedbackItem({ item }) {
   const { deleteFeedback, editFeedback } = useContext(FeedbackContext);
-
+  const { id, text, rating } = item;
   return (
     <Card>
-      <div className="num-display">{item.rating}</div>
+      <div className="num-display">{rating}</div>
       <button
         className="close"
         onClick={() => {
-          deleteFeedback(item.id);
+          deleteFeedback(id);
         }}
       >
         <FaTimes color="grey"></FaTimes>
       </button>
       <button className="edit" onClick={() => editFeedback(item)}>
-        <FaEdit color="grey"/>
+        <FaEdit color="grey" />
       </button>
-      <div className="text-display">{item.text}</div>
+      <div className="text-display">{text}</div>
     </Card>
   );
 }

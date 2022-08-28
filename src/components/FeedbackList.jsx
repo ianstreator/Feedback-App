@@ -16,12 +16,12 @@ function FeedbackList() {
       <AnimatePresence>
         {feedback.map((item) => (
           <motion.div
-            key={item.id}
+            key={item.text}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <FeedbackItem key={item.id} item={item} />
+            <FeedbackItem item={item} />
           </motion.div>
         ))}
       </AnimatePresence>

@@ -1,11 +1,10 @@
 import { useState, useContext, useEffect } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 import Card from "./shared/Card";
 import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";
 import FeedbackContext from "../Context/FeedbackContext";
-
 
 function FeedbackForm() {
   const [text, setText] = useState("");
@@ -17,13 +16,14 @@ function FeedbackForm() {
 
   useEffect(() => {
     if (feedbackEdit.edit === true) {
-      setBtnDisabled(false);
       setText(feedbackEdit.item.text);
       setRating(feedbackEdit.item.rating);
     }
   }, [feedbackEdit]);
 
   const handleTextChange = (e) => {
+    if (text.trim().length < 10) setBtnDisabled(true);
+
     if (text === "") {
       setBtnDisabled(true);
       setMessage(null);
@@ -43,7 +43,7 @@ function FeedbackForm() {
         text,
         rating,
       };
-      if (feedbackEdit.edit === true) {
+      if (feedbackEdit.edit) {
         updateFeedback(feedbackEdit.item.id, newFeedback);
         feedbackEdit.edit = false;
       } else {
@@ -51,7 +51,7 @@ function FeedbackForm() {
       }
       setText("");
       setBtnDisabled(true);
-      toast("Thank you for sharing your feedback!")
+      toast("Thank you for sharing your feedback!");
     }
   };
 
