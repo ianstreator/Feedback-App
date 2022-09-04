@@ -1,4 +1,4 @@
-import spinner from "../../assets/homer-loading.gif";
+import spinner from "../../assets/loader.svg";
 const style = {
   display: "block",
   width: "400px",

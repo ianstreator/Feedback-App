@@ -20,7 +20,11 @@ export const FeedbackProvider = ({ children }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     };
-    if (method === "GET" || "DELETE") options = null;
+    if (method === "GET" || method === "DELETE") {
+      options = {
+        method,
+      };
+    }
     const backendUrl = id ? `/feedback/${id}` : "/feedback";
     const res = await fetch(backendUrl, options);
     const data = await res.json();
@@ -28,7 +32,8 @@ export const FeedbackProvider = ({ children }) => {
       setFeedback(data);
       setTimeout(() => {
         setIsLoading(false);
-      }, 1500);
+      }, 2000);
+      return;
     }
     return data;
   };
@@ -46,21 +51,10 @@ export const FeedbackProvider = ({ children }) => {
       body: updateItem,
       id,
     });
-    // const data = await fetch(`http://localhost:5000/feedback/${id}`, {
-    //   method: "PUT",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(updateItem),
-    // });
     setFeedback(
-      feedback.map((item) => {
-        if (item.id === id) {
-          return { ...item, ...updatedItem };
-        } else {
-          return item;
-        }
-      })
+      feedback.map((item) =>
+        item.id === id ? { ...item, ...updatedItem } : item
+      )
     );
   };
 
@@ -72,14 +66,8 @@ export const FeedbackProvider = ({ children }) => {
   };
 
   const addFeedback = async (newFeedback) => {
-    if (feedback.length) {
-      let lastID = feedback[0].id;
-      newFeedback.id = lastID + 1;
-    } else {
-      newFeedback.id = 1;
-    }
-    await feedbackCRUD({ method: "POST", body: newFeedback });
-    setFeedback([newFeedback, ...feedback]);
+    const data = await feedbackCRUD({ method: "POST", body: newFeedback });
+    setFeedback([data, ...feedback]);
   };
 
   return (

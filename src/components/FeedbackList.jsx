@@ -21,7 +21,7 @@ function FeedbackList() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <FeedbackItem item={item} />
+            <FeedbackItem item={item} key={item.text} />
           </motion.div>
         ))}
       </AnimatePresence>

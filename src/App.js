@@ -21,10 +21,10 @@ function App() {
                 path="/"
                 element={
                   <>
-                    <Notify />
-                    <FeedbackForm />
-                    <FeedbackStats />
-                    <FeedbackList />
+                    <Notify key={1} />
+                    <FeedbackForm key={2} />
+                    <FeedbackStats key={3} />
+                    <FeedbackList key={4} />
                   </>
                 }
               />
