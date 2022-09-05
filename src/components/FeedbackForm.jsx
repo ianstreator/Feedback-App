@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import Card from "./shared/Card";
 import Button from "./shared/Button";

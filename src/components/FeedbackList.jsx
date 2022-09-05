@@ -8,15 +8,11 @@ function FeedbackList() {
   const { feedback, isLoading } = useContext(FeedbackContext);
 
   if (isLoading) {
-    return (
-      <div className="feedback-list">
-        <Spinner />
-      </div>
-    );
+    return <Spinner />;
   }
 
   return (
-    <div className="feedback-list">
+    <div>
       <AnimatePresence>
         {feedback.map((item) => (
           <motion.div

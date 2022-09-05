@@ -1,8 +1,7 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function App(){
-
+function App() {
   return (
     <div>
       <ToastContainer />
@@ -10,4 +9,4 @@ function App(){
   );
 }
 
-export default App
+export default App;
