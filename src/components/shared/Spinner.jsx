@@ -1,11 +1,9 @@
-import spinner from "../../assets/loader.svg";
+// import spinner from "../../assets/loader.svg";
 const style = {
   display: "block",
-  width: "200px",
-  margin: "auto",
 };
-function Spinner() {
-  return <img src={spinner} alt="Loading..." style={style}></img>;
+function Spinner({ src, width }) {
+  return <img src={src} alt="Loading..." style={style} width={width}></img>;
 }
 
 export default Spinner;
