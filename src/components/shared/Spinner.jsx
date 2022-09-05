@@ -1,7 +1,7 @@
 import spinner from "../../assets/loader.svg";
 const style = {
   display: "block",
-  width: "400px",
+  width: "200px",
   margin: "auto",
 };
 function Spinner() {

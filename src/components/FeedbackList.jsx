@@ -8,7 +8,11 @@ function FeedbackList() {
   const { feedback, isLoading } = useContext(FeedbackContext);
 
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <div className="feedback-list">
+        <Spinner />
+      </div>
+    );
   }
 
   return (
